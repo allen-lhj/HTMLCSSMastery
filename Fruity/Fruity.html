@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/ed23adbadb.js" crossorigin="anonymous"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+        /* Common Style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        /* body {
+            overflow: hidden !important;
+        } */
+        a:focus {
+            outline: none;
+            box-shadow: none;
+            }
+        input:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
+        input:focus-visible {
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
+        /* Root*/
+        :root {
+        --pear-can: #e6ffde;
+        --pear-logo: #03403f;
+        --apple-can: #f2675a;
+        --apple-logo: #ec4458;
+        --exotic-can: #9590f1;
+        --black-color: #000000;
+        --white-color: #ffffff;
+        --exotic-logo: #6464ff;
+        --pear-background: #c9e78a;
+        --apple-background: #ffb2b2;
+        --exotic-background: #c1bff2;
+        }
+        /* Typography */
+        h1 {
+            font-family: "Lexend";
+            font-size: 449px !important;
+            line-height: normal;
+            color: var(--white-color) !important;
+            margin: 0 !important;
+        }
+        h2 {
+            font-family: "Lexend";
+            font-size: 40px;
+            line-height: normal;
+            margin: 0;
+            font-weight: 900;
+        }
+        /* Header */
+        header {
+            padding: 22px 28px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            z-index: 99;
+            text-align: center;
+        }
+        .logo {
+            color: var(--pear-logo);
+        }
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .cane-image {
+            max-width: 265px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            mask-image: url('./images/cane.svg');
+            mask-repeat: no-repeat;
+            mask-position: center center;
+            mask-size: 100% auto;
+            overflow: hidden;
+        }
+        .cane-image img {
+            width: 100%;
+        }
+        .cane-labels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300% !important;
+            mix-blend-mode: multiply;
+            transition: all ease-in-out 0.3s;
+        }
+         /* Fruits Images */
+         .fruit-image {
+            opacity: 1;
+            position: absolute;
+         }
+         .image-one {
+            max-width: 282px;
+            bottom: 100px;
+         }
+         .image-two {
+            max-width: 247px;
+            top: 23%;
+            left: 25%;
+         }
+         .image-three {
+            max-width: 211px;
+            top: 23%;
+            right: 25%;
+        }
+        .image-four {
+            max-width: 294px;
+            bottom: 100px;
+            right: 0;
+        }
+        .fruit-image::after {
+            content: "";
+            position: absolute;
+            background: linear-gradient(90deg, #000 3.66%, rgba(0, 0, 0, 0) 92.35%);
+            opacity: 0.43;
+            filter: blur(7.5px);
+            transform: rotate(-6.941deg);
+            right: 0;
+            width: 173px;
+            height: 30px;
+        }
+        .image-one::after {
+            bottom: -50px;
+        }
+        .image-two::after {
+            bottom: -200px;
+            height: 22px;
+        }
+        .image-three::after {
+            bottom: -280px;
+            width: 103px;
+        }
+        .image-four::after {
+            bottom: -50px;
+        }
+         /* Section */
+        .section-container-main {
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+            z-index: -1;
+        }
+        .section-container {
+            width: 300vw;
+            display: flex;
+            position: relative;
+            transition: all ease-in-out 0.5s;
+            align-items: center;
+        }
+        .section {
+            min-width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            z-index: -1;
+            background-color: var(--pear-background);
+        }
+        .section:nth-child(2) {
+            background-color: var(--apple-background);
+        }
+        .section:nth-child(3) {
+            background-color: var(--exotic-background);
+        }
+        button {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            z-index: 99;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            height: 80px;
+            width: 80px;
+            background-color: var(--white-color);
+            border: none;
+            font-size: 40px;
+            color: var(--apple-logo);
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+        }
+        #prevButton {
+            left: 30px;
+            right: unset;
+            display: none;
+            transition: all ease-in 0.3s;
+        }
+
+        /*Section  */
+        .section-container-main {
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+            z-index: -1;
+        }
+        .section-container {
+            width: 300vw;
+            display: flex;
+            position: relative;
+            transition: all ease-in-out 0.5s;
+            align-items: center;
+        }
+        .section {
+            min-width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            z-index: -1;
+            background: var(--pear-background);
+        }
+        .section:nth-child(2) {
+            background-color: var(--apple-background);
+        }
+        .section:nth-child(3) {
+            background-color: var(--exotic-background);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <h2 class="logo">
+            Fruity
+        </h2>
+    </header>
+    <!-- main -->
+     <main>
+        <!-- buttons -->
+        <div>
+            <button id="prevButton" class="wave"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="nextButton" class="wave"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!-- Fixed Sections -->
+         <div class="text">
+            <h1 class="h1">Pear</h1>
+            <div class="cane-image">
+                <img src="./images/cane.svg" alt="">
+                <img src="./images/Labels.jpg" alt="" class="cane-labels">
+            </div>
+         </div>
+
+         <div class="section-container-main">
+            <div class="section-container">
+              <section class="section" id="section1">
+                <div class="fruit-images">
+                  <div class="image-one fruit-image"><img src="./images/pear-one.png" alt="pear-image"></div>
+                  <div class="image-two fruit-image"><img src="./images/pear-two.png" alt="pear-image"></div>
+                  <div class="image-three fruit-image"><img src="./images/pear-three.png" alt="pear-image"></div>
+                  <div class="image-four fruit-image"><img src="./images/pear-four.png" alt="pear-image"></div>
+                </div>
+              </section>
+               <section class="section" id="section2">
+                <div class="fruit-images">
+                  <div class="image-one fruit-image"><img src="./images/apple-one.png" alt="apple-image"></div>
+                  <div class="image-two fruit-image"><img src="./images/apple-two.png" alt="apple-image"></div>
+                  <div class="image-three fruit-image"><img src="./images/apple-three.png" alt="apple-image"></div>
+                  <div class="image-four fruit-image"><img src="./images/apple-four.png" alt="apple-image"></div>
+                </div>
+              </section>
+              <section class="section" id="section3">
+                <div class="fruit-images">
+                  <div class="image-one fruit-image"><img src="./images/exotic-one.png" alt="exotic-image"></div>
+                  <div class="image-two fruit-image"><img src="./images/exotic-two.png" alt="exotic-image"></div>
+                  <div class="image-three fruit-image"><img src="./images/exotic-three.png" alt="exotic-image"></div>
+                  <div class="image-four fruit-image"><img src="./images/exotic-four.png" alt="exotic-image"></div>
+                </div>
+              </section>
+            </div>
+          </div>
+          </div>
+     </main>
+</body>
+<script>
+    // Data for the sections
+let h1Texts = ["Pear", "Apple", "Exotic"]; // Add your h1 texts here
+let logoColors = [
+  "var(--pear-logo)",
+  "var(--apple-logo)",
+  "var(--exotic-logo)"
+]; // Add your logo colors here
+let keyframes = ["wave-pear-effect", "wave-apple-effect", "wave-exotic-effect"]; // Add your keyframes here
+// Normal GSAP animation.......
+gsap.from(".fruit-image ", { y: "-100vh", delay: 0.5 });
+gsap.to(".fruit-image img", {
+  x: "random(-20, 20)",
+  y: "random(-20, 20)",
+  zIndex: 22,
+  duration: 2,
+  ease: "none",
+  yoyo: true,
+  repeat: -1
+});
+</script>
+</html>
