@@ -31,3 +31,19 @@ transition-property: 指定要应用过渡效果的CSS属性，例如 width、he
 transition-duration: 设置过渡效果的持续时间，单位可以是秒(s)或毫秒(ms)。
 transition-timing-function: 定义过渡的速度曲线，控制过渡过程中变化的节奏。常见的速度曲线包括ease、linear、ease-in、ease-out、ease-in-out以及cubic-bezier()自定义函数
 transition-delay: 设置过渡的延迟时间，单位同样是秒(s)或毫秒(ms)。
+
+
+该项目编写流程：
+
+先添加common Style，设置盒模型，清除a元素默认样式，引入字体
+然后使用:root伪类选择器定义颜色变量，以便在全局使用。
+
+然后添加html元素，编写header，main布局，然后定义cane-image做main元素的背景图
+接下来定义三组水果图片section元素
+
+引入字体文件
+设置header样式设置Cane image样式将其定位到页面中间
+将label三种饮料图片宽度设为当前页面的三倍，定位到左侧位置，占满屏幕
+设置三种水果的四张图片，在页面四角漂浮旋转，每组水果的盒子进行相对定位以便每个水果单独进行绝对定位并单独设置颜色
+随后设置四张图片的阴影
+最后设置两侧按钮的固定定位

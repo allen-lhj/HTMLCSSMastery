@@ -154,34 +154,6 @@
         .image-four::after {
             bottom: -50px;
         }
-         /* Section */
-        .section-container-main {
-            width: 100vw;
-            overflow: hidden;
-            position: relative;
-            z-index: -1;
-        }
-        .section-container {
-            width: 300vw;
-            display: flex;
-            position: relative;
-            transition: all ease-in-out 0.5s;
-            align-items: center;
-        }
-        .section {
-            min-width: 100vw;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            z-index: -1;
-            background-color: var(--pear-background);
-        }
-        .section:nth-child(2) {
-            background-color: var(--apple-background);
-        }
-        .section:nth-child(3) {
-            background-color: var(--exotic-background);
-        }
         button {
             position: fixed;
             top: 50%;
@@ -203,6 +175,10 @@
             right: unset;
             display: none;
             transition: all ease-in 0.3s;
+        }
+        .wave {
+            animation: wave-apple-effect 4s linear infinite;
+            animation-direction: normal;
         }
 
         /*Section  */
@@ -233,6 +209,55 @@
         .section:nth-child(3) {
             background-color: var(--exotic-background);
         }
+
+        @keyframes wave-pear-effect {
+  0% {
+    box-shadow: 0 0 0 0px var(--pear-background),
+      0 0 0 0px var(--pear-background);
+  }
+  40% {
+    box-shadow: 0 0 0 50px rgba(60, 41, 188, 0),
+      0 0 0 0px var(--pear-background);
+  }
+  80% {
+    box-shadow: 0 0 0 50px rgba(60, 41, 188, 0), 0 0 0 30px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(60, 41, 188, 0), 0 0 0 30px rgba(0, 230, 118, 0);
+  }
+}
+@keyframes wave-apple-effect {
+  0% {
+    box-shadow: 0 0 0 0px var(--apple-background),
+      0 0 0 0px var(--apple-background);
+  }
+  40% {
+    box-shadow: 0 0 0 50px rgba(60, 41, 188, 0),
+      0 0 0 0px var(--apple-background);
+  }
+  80% {
+    box-shadow: 0 0 0 50px rgba(60, 41, 188, 0), 0 0 0 30px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(60, 41, 188, 0), 0 0 0 30px rgba(0, 230, 118, 0);
+  }
+}
+@keyframes wave-exotic-effect {
+  0% {
+    box-shadow: 0 0 0 0px var(--exotic-background),
+      0 0 0 0px var(--exotic-background);
+  }
+  40% {
+    box-shadow: 0 0 0 50px rgba(60, 41, 188, 0),
+      0 0 0 0px var(--exotic-background);
+  }
+  80% {
+    box-shadow: 0 0 0 50px rgba(60, 41, 188, 0), 0 0 0 30px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(60, 41, 188, 0), 0 0 0 30px rgba(0, 230, 118, 0);
+  }
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
@@ -311,6 +336,86 @@ gsap.to(".fruit-image img", {
   ease: "none",
   yoyo: true,
   repeat: -1
+});
+
+// get the elements
+const waveEffect = document.querySelector('.wave');
+const sections = document.querySelector('.section');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+const caneLabels = document.querySelector('.cane-labels');
+const sectionContainer = document.querySelector('.section-container');
+
+let index = 0;
+let currentIndex = 0;
+let currentPosition = 0;
+
+nextButton.addEventListener('click', () => {
+    if (currentPosition > -200) {
+        currentPosition -= 100;
+        caneLabels.style.left = `${currentPosition}%`;
+        sectionContainer.style.left = `${currentPosition}%`;
+    }
+    currentIndex++;
+    if (currentIndex < h1Texts.length) {
+        document.querySelector('.h1').innerHTML = h1Texts[currentIndex];
+    }
+    gsap.to('.logo', {
+        opacity: 1,
+        duration: 1,
+        color: logoColors[currentIndex]
+    })
+    gsap.from(".h1", { y: "20%", opacity: 0, duration: 0.5 });
+
+// y: "-100vh"：设置垂直方向的起始位置为视口高度的-100%，即元素开始时位于视窗外的上方。
+// delay: 0.4：动画延迟0.4秒开始。
+// duration: 0.4：动画持续时间为4秒。
+// 结合来看，这个动画会使.fruit-image类的元素从视窗外上方开始，快速向下移动进入视口内，动画持续时间短于第一个动画，并且有一个延迟。
+    gsap.from(".fruit-image ", { y: "-100vh", delay: 0.4, duration: 0.4 });
+    if (currentIndex === h1Texts.length - 1) {
+        nextButton.style.display = 'none';
+    }
+
+    if(currentIndex > 0) {
+        prevButton.style.display = 'block';
+    }
+
+    nextButton.style.color = logoColors[currentIndex + 1];
+    prevButton.style.color = logoColors[currentIndex - 1];
+    nextButton.style.animationName = keyframes[currentIndex + 1];
+    prevButton.style.animationName = keyframes[currentIndex - 1];
+
+})
+
+// Add event listeners to the buttons
+prevButton.addEventListener("click", () => {
+  if (currentPosition < 0) {
+    currentPosition += 100;
+    // Update the left position of the cane-labels
+    caneLabels.style.left = `${currentPosition}%`;
+    sectionContainer.style.left = `${currentPosition}%`;
+    sectionContainer.style.transition = `all 0.5s ease-in-out`;
+  }
+  // Decrement index and currentIndex
+  currentIndex--;
+  if (currentIndex >= 0) {
+    document.querySelector(".h1").innerHTML = h1Texts[currentIndex];
+  }
+  // Gasp animation for previous section components
+  gsap.to(".logo", { color: logoColors[currentIndex], duration: 1 });
+  gsap.from(".h1", { y: "20%", opacity: 0, duration: 0.5 });
+  gsap.from(".fruit-image ", { y: "100vh", delay: 0.5 });
+  // Enable the nextButton if it was disabled
+  nextButton.style.display = "block";
+  // Disable the prevButton if it's the first section
+  if (currentIndex === 0) {
+    prevButton.style.display = "none";
+  }
+  // Button colors and animations
+  nextButton.style.color = logoColors[currentIndex + 1];
+  prevButton.style.color = logoColors[currentIndex - 1];
+  nextButton.style.animationName = keyframes[currentIndex + 1];
+  prevButton.style.animationName = keyframes[currentIndex - 1];
 });
 </script>
 </html>
