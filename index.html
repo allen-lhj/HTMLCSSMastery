@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+      @import url("https://unpkg.com/normalize.css") layer(normalize);
+      *,
+      *:after,
+      *:before {
+        box-sizing: border-box;
+        outline-color: hsl(0 100% 50%);
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        min-height: 100vh;
+        font-family: "Inter", "SF Pro Text", "SF Pro Icons", "AOS Icons",
+          "Helvetica Neue", Helvetica, Arial, sans-serif, system-ui;
+      }
+      body::before {
+        --line: hsl(0 0% 15% / 0.25);
+        --size: 60px;
+        content: "";
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        background: linear-gradient(
+              90deg,
+              var(--line) 1px,
+              transparent 1px var(--size)
+            )
+            50% 50% / var(--size) var(--size),
+          linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+            var(--size) var(--size);
+        mask: linear-gradient(-15deg, transparent 30%, white);
+        top: 0;
+        z-index: -1;
+        transform: translate3d(0, 0, -100vmin);
+      }
+      h1 {
+        text-align: center;
+        font-size: clamp(2rem, 7vw + 1rem, 8rem);
+        width: 16ch;
+        line-height: 1;
+        margin: 0;
+      }
+      header {
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        justify-content: center;
+        gap: 1rem;
+        min-height: 40vh;
+        padding: 6rem 1rem;
+      }
+      header p {
+        text-align: center;
+        max-width: 75%;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>make CSS do the things you want</h1>
+      <p>Get started now and get access to 100s of CSS tips and tricks</p>
+      <div class="plan-controls">
+        <div class="plan-toggle">
+            <input type="radio" name="plan" id="month" class="sr-only" checked></input>
+            <label for="month">Monthly</label>
+
+            <input type="radio" name="plan" id="annual" class="sr-only"></input>
+            <label for="annual">Annually</label>
+            <div class="plan-toggle__indicator indicator">
+              <div class="indicator__track">
+                <div for="month">Monthly</div>
+                <div for="annual">Annually</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </header>
+  </body>
+</html>
