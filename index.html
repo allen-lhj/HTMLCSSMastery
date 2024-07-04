@@ -61,7 +61,100 @@
         text-align: center;
         max-width: 75%;
       }
-      
+
+      .plan-controls {
+        position: relative;
+        clip-path: inset(-100vh, 0 0 0);
+      }
+      .plan-toggle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 100px;
+        border: 4px solid transparent;
+        background: hsl(0, 0%, 80%);
+        position: relative;
+        transition: background 0.25s;
+        clip-path: inset(0 0 0 0 round 100px);
+      }
+      input:focus-visible ~ .indicator {
+        outline: 2px solid red;
+        outline-offset: 2px;
+      }
+
+      .plan-toggle label {
+        text-align: center;
+        padding: 1rem 2rem;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 100px;
+      }
+
+      .plan-toggle:hover {
+        background: hsl(0% 0%, 85%);
+      }
+
+      .plan-toggle__indicator {
+        position: absolute;
+        background: hsl(0 0% 10%);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        border-radius: 100px;
+        pointer-events: none;
+        color: white;
+        overflow: hidden;
+        translate: calc(var(--slide, 0) * 100%) 0;
+        transition: translate 0.25s;
+      }
+      .indicator__track {
+        width: 200%;
+        display: grid;
+        height: 100%;
+        grid-template-columns: 1fr 1fr;
+        translate: calc(var(--slide, 0) * -50%) 0;
+		    transition: translate 0.25s;
+      }
+
+      .indicator__track div {
+        display: grid;
+        place-items: center;
+        height: 100%;
+      }
+      .plans {
+        font-size: .875rem;
+      }
+      input:nth-of-type(2):checked ~ .indicator {
+        --slide: 1;
+      }
+
+      .plan-controls {
+        position: relative;
+        clip-path: inset(-100vh 0 0 0);
+      }
+
+      .plan-controls:hover,
+      .plan-controls:has(:focus-visible) {
+        --intent: 1;
+      }
+
+      :root:has(#annual:checked) .bear--cool,
+      :root:has(#month:checked) .bear--wave {
+        --active: 1;
+        transition-delay: var(--speed);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border-width: 0;
+      }
     </style>
   </head>
   <body>
@@ -83,6 +176,167 @@
             </div>
           </div>
       </div>
+      <div class="plans">
+        <strong>Save up to 28%</strong> when you subscribe annually
+      </div>
     </header>
+    <main>
+      <section>
+        <article>
+          <div>
+            <h2>Apprentice</h2>
+            <p>For those on a journey</p>
+          </div>
+          <div class="price price--apprenticeship">
+            <div class="register" aria-hidden="true">
+              <span>$</span>
+              <div class="digit">
+                <div class="digit__track">
+                  <div>9</div>
+                  <div>0</div>
+                  <div>1</div>
+                  <div>2</div>
+                  <div>3</div>
+                  <div>4</div>
+                  <div>5</div>
+                  <div>6</div>
+                  <div>7</div>
+                  <div>8</div>
+                  <div>9</div>
+                  <div>0</div>
+                </div>
+              </div>
+              <div class="digit">
+                <div class="digit__track">
+                  <div>9</div>
+                  <div>0</div>
+                  <div>1</div>
+                  <div>2</div>
+                  <div>3</div>
+                  <div>4</div>
+                  <div>5</div>
+                  <div>6</div>
+                  <div>7</div>
+                  <div>8</div>
+                  <div>9</div>
+                  <div>0</div>
+                </div>
+              </div>
+            </div>
+            <span class="sr-only">$14</span>
+            <span class="sr-only">$10</span>
+          </div>
+          <div class="billing">
+            <span aria-hidden="true">Billed monthly</span>
+            <span aria-hidden="true">Billed at $100 annually</span>
+            <span class="sr-only">Billed monthly</span>
+            <span class="sr-only">Billed at $100 annually</span>
+          </div>
+          <div class="actions">
+            <a href="#apprenticemonth">Begin Apprenticeship</a>
+            <a href="#apprenticeannual">Begin Apprenticeship</a>
+          </div>
+          <ul>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              Access entire library</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              Access all source code</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              Access to Discord</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              1 mentorship hour per month</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              2 demo requests</li>
+          </ul>
+        </article>
+        <article>
+          <div>
+            <h2>Master</h2>
+            <p>For those making the journey</p>
+          </div>
+          <div class="price price--mastery">
+            <div class="register" aria-hidden="true">
+              <span>$</span>
+              <div class="digit">
+                <div class="digit__track">
+                  <div>9</div>
+                  <div>0</div>
+                  <div>1</div>
+                  <div>2</div>
+                  <div>3</div>
+                  <div>4</div>
+                  <div>5</div>
+                  <div>6</div>
+                  <div>7</div>
+                  <div>8</div>
+                  <div>9</div>
+                  <div>0</div>
+                </div>
+              </div>
+              <div class="digit">
+                <div class="digit__track">
+                  <div>9</div>
+                  <div>0</div>
+                  <div>1</div>
+                  <div>2</div>
+                  <div>3</div>
+                  <div>4</div>
+                  <div>5</div>
+                  <div>6</div>
+                  <div>7</div>
+                  <div>8</div>
+                  <div>9</div>
+                  <div>0</div>
+                </div>
+              </div>
+            </div>
+            <span class="sr-only">$23</span>
+            <span class="sr-only">$16</span>
+          </div>
+          <div class="billing">
+            <span aria-hidden="true">Billed monthly</span>
+            <span aria-hidden="true">Billed at $160 annually</span>
+            <span class="sr-only">Billed monthly</span>
+            <span class="sr-only">Billed at $160 annually</span>
+          </div>
+          <div class="actions">
+            <a href="#masterymonth">Begin Mastery</a>
+            <a href="#masteryannual">Begin Mastery</a>
+          </div>
+          <ul>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              Access entire library</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              Access all source code</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              Access to Discord</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              2 mentorship hours per month</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+              </svg>
+              10 demo requests</li>
+          </ul>
+        </article>
+      </section>
+    </main>
   </body>
 </html>
